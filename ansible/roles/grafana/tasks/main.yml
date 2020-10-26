@@ -26,13 +26,11 @@
   template:
     src: dashboards.yml
     dest: /opt/grafana/dashboards/dashboards.yml
-  notify: restart grafana
 
 - name: Template out grafana dashboard json
   template:
     src: speedtest.net.json
     dest: /opt/grafana/dashboards/speedtest.net.json
-  notify: restart grafana
 
 - name: Stop grafana
   service:
