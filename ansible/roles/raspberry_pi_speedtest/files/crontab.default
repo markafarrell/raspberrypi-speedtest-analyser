@@ -1,0 +1,1 @@
+0 * * * * /usr/bin/speedtest-cli $SPEEDTEST_PARAMS --prometheus-push-gateway http://prometheus-push-gateway:9091

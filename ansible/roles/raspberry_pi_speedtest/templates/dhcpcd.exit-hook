@@ -1,0 +1,3 @@
+{% for route in static_routes %}
+ip route add {{ route.cidr }} via {{ route.gateway }}
+{% endfor %}

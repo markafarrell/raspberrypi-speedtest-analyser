@@ -1,0 +1,20 @@
+[Unit]
+Description=grafana
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker rm grafana
+ExecStartPre=-/usr/bin/docker network create stats-net
+ExecStart=/usr/bin/docker run \
+    --name=grafana \
+    --network=stats-net \
+    -v /opt/grafana/datasources:/etc/grafana/provisioning/datasources \
+    -v /opt/grafana/dashboards:/etc/grafana/provisioning/dashboards \
+    -p 80:3000 \
+    grafana/grafana
+
+[Install]
+WantedBy=default.target

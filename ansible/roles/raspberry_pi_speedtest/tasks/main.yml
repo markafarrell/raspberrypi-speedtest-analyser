@@ -1,0 +1,9 @@
+---
+- name: Install packages
+  include_tasks: install-packages.yml
+
+- name: Configure dhcpcd
+  include_tasks: configure-dhcpcd.yml
+
+- name: Configure docker-speedtest-analyser
+  include_tasks: configure-docker-speedtest-analyser.yml

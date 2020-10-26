@@ -1,0 +1,15 @@
+---
+# tasks file for prometheus_push_gateway
+
+- name: Template out service file
+  template:
+    src: prometheus-push-gateway.service
+    dest: /etc/systemd/system/prometheus-push-gateway.service
+  register: service_file_result
+  notify: restart prometheus-push-gateway
+
+- name: Stop docker-speedtest-analyser
+  service:
+    name: prometheus-push-gateway
+    state: stopped
+  when: service_file_result.changed

@@ -1,0 +1,11 @@
+---
+- name: Install packages
+  package:
+    name: "{{ apt_packages }}"
+    state: latest
+  become: true
+
+- name: Install pip packages
+  pip:
+    name: "{{ pip_packages }}"
+  become: true

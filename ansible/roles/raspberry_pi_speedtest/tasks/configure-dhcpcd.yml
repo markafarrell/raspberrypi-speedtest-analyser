@@ -1,0 +1,17 @@
+---
+- name: Generate dhcpcd config file
+  template:
+    src: dhcpcd.conf
+    dest: /etc/dhcpcd.conf
+  become: true
+  notify:
+    - restart dhcpcd
+
+- name: Configure static routes
+  template:
+    src: dhcpcd.exit-hook
+    dest: /etc/dhcpcd.exit-hook
+    mode: '744'
+  become: true
+  notify:
+    - restart dhcpcd

@@ -1,0 +1,25 @@
+---
+# tasks file for prometheus
+- name: Template out service file
+  template:
+    src: prometheus.service
+    dest: /etc/systemd/system/prometheus.service
+  register: service_file_result
+  notify: restart prometheus
+
+- name: Create prometheus directory
+  file:
+    dest: /opt/prometheus
+    state: directory
+
+- name: Template out prometheus configuration
+  template:
+    src: prometheus.yml
+    dest: /opt/prometheus/prometheus.yml
+  notify: restart prometheus
+
+- name: Stop prometheus
+  service:
+    name: prometheus
+    state: stopped
+  when: service_file_result.changed

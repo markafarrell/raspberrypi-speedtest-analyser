@@ -1,0 +1,24 @@
+---
+# tasks file for raspberry_pi_docker
+- name: Check if docker is installed
+  command: docker --version
+  register: docker_installed
+  ignore_errors: true
+
+- name: Download get-docker.sh
+  get_url:
+    url: https://get.docker.com
+    dest: ~/get-docker.sh
+    mode: '744'
+  when: docker_installed.rc == 2
+
+- name: Install docker
+  command: ~/get-docker.sh
+  become: true
+  when: docker_installed.rc == 2
+
+- name: Add pi user to docker group
+  user:
+    name: pi
+    append: true
+    groups: docker

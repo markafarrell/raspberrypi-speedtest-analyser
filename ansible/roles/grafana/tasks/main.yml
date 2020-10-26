@@ -1,0 +1,41 @@
+---
+# tasks file for grafana
+- name: Template out service file
+  template:
+    src: grafana.service
+    dest: /etc/systemd/system/grafana.service
+  register: service_file_result
+  notify: restart grafana
+
+- name: Create grafana directories
+  file:
+    dest: "{{ item }}"
+    state: directory
+  loop:
+    - /opt/grafana
+    - /opt/grafana/datasources
+    - /opt/grafana/dashboards
+
+- name: Template out grafana datasource configuration
+  template:
+    src: datasources.yml
+    dest: /opt/grafana/datasources/datasources.yml
+  notify: restart grafana
+
+- name: Template out grafana dashboard configuration
+  template:
+    src: dashboards.yml
+    dest: /opt/grafana/dashboards/dashboards.yml
+  notify: restart grafana
+
+- name: Template out grafana dashboard json
+  template:
+    src: speedtest.net.json
+    dest: /opt/grafana/dashboards/speedtest.net.json
+  notify: restart grafana
+
+- name: Stop grafana
+  service:
+    name: grafana
+    state: stopped
+  when: service_file_result.changed

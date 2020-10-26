@@ -1,0 +1,45 @@
+---
+- name: Copy docker files to host
+  copy:
+    src: files/{{ item }}
+    dest: /opt/docker-speedtest-analyser
+  loop:
+    - Dockerfile
+    - crontab.default
+    - run.sh
+  register: copy_result
+
+- name: Stop docker-speedtest-analyser
+  community.general.docker_container:
+    name: docker-speedtest-analyser
+    state: absent
+  when: copy_result.changed
+  ignore_errors: true
+
+- name: Remove docker image
+  community.general.docker_image:
+    name: docker-speedtest-analyser
+    force_absent: true
+    state: absent
+  when: copy_result.changed
+  ignore_errors: true
+
+- name: Build docker image
+  community.general.docker_image:
+    name: docker-speedtest-analyser
+    build:
+      path: /opt/docker-speedtest-analyser
+  notify: restart docker-speedtest-analyser
+
+- name: Template out service file
+  template:
+    src: docker-speedtest-analyser.service
+    dest: /etc/systemd/system/docker-speedtest-analyser.service
+  register: service_file_result
+  notify: restart docker-speedtest-analyser
+
+- name: Stop docker-speedtest-analyser
+  service:
+    name: docker-speedtest-analyser
+    state: stopped
+  when: service_file_result.changed

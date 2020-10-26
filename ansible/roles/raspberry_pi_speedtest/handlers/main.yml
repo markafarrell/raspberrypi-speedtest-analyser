@@ -1,0 +1,17 @@
+---
+# handlers file for raspberry-pi-speedtest
+- name: reboot
+  reboot:
+  become: true
+
+- name: restart dhcpcd
+  service:
+    name: dhcpcd
+    state: restarted
+
+- name: restart docker-speedtest-analyser
+  service:
+    name: docker-speedtest-analyser
+    daemon_reload: true
+    enabled: true
+    state: restarted

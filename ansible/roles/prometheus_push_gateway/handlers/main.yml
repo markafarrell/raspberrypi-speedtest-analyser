@@ -1,0 +1,9 @@
+---
+# handlers file for prometheus_push_gateway
+
+- name: restart prometheus-push-gateway
+  service:
+    name: prometheus-push-gateway
+    daemon_reload: true
+    enabled: true
+    state: restarted

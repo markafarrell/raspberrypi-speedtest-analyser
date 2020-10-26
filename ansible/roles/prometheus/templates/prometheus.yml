@@ -1,0 +1,12 @@
+---
+global:
+  # How frequently to scrape targets by default.
+  scrape_interval: 1m
+
+scrape_configs:
+  - job_name: speedtest
+    honor_labels: true
+    # List of labeled statically configured targets for this job.
+    static_configs:
+      - targets:
+          - prometheus-push-gateway:9091

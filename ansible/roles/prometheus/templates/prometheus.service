@@ -1,0 +1,20 @@
+[Unit]
+Description=prometheus
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker rm prometheus
+ExecStartPre=-/usr/bin/docker network create stats-net
+ExecStartPre=-/usr/bin/docker volume create prometheus-data
+ExecStart=/usr/bin/docker run \
+    --name prometheus \
+    --network=stats-net \
+    -v /opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+    --volume prometheus-data:/prometheus \
+    prom/prometheus
+
+[Install]
+WantedBy=default.target

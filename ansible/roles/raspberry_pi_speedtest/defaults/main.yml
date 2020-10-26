@@ -1,0 +1,57 @@
+---
+# defaults file for raspberry-pi-speedtest
+apt_packages:
+  - dnsutils
+  - python3-pip
+  - nload
+  - git
+  - tcpdump
+  - adb
+
+pip_packages:
+  - docker
+
+mobile_interface_ip_address: 192.168.42.124/24
+
+mobile_gateway: 192.168.42.129
+
+static_routes:
+  - cidr: 139.130.3.66 # mel1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 110.145.177.190 # win1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 144.130.167.86 # hob1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 144.130.167.198 # cbr1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 110.143.60.254 # syd1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 144.130.165.118 # cha1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 203.47.10.37 # ade1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 110.145.213.6 # ool1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 203.39.103.129 # brs1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 110.145.213.14 # mcy1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 203.43.60.161 # per1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 203.54.161.146 # drw1.speedtest.telstra.net
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
+
+# get the list of id by running speedtest-cli --list inside the docker-speedtest-analyser container
+speedtest_servers:
+  - 2225 # Telstra (Melbourne, Australia)
+  - 18712 # Telstra (Hobart, Australia)
+  - 18714 # Telstra (Windsor, Australia)
+
+  # - 2604 # Telstra (Brisbane, Australia)
+  # - 2628 # Telstra (Adelaide, Australia)
+  # - 2629 # Telstra (Sydney, Australia)
+  # - 16329 # Telstra (Gold Coast, Australia)
+  # - 17702 # Telstra (Sunshine Coast, AU)
+  # - 18711 # Telstra (Canberra, Australia)
+  # - 18713 # Telstra (Chatswood, Australia)
+
