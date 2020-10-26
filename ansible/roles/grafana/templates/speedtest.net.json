@@ -89,7 +89,7 @@
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "Speedtest Downlink Results",
+            "title": "Speedtest Results",
             "tooltip": {
                 "shared": true,
                 "sort": 0,
@@ -209,7 +209,7 @@
                     "format": "ms",
                     "label": null,
                     "logBase": 1,
-                    "max": null,
+                    "max": "200",
                     "min": "0",
                     "show": true
                 },
