@@ -1,0 +1,8 @@
+---
+# tasks file for node_exporter
+- name: Template out service file
+  template:
+    src: node_exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+  register: service_file_result
+  notify: restart node_exporter

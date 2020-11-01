@@ -40,6 +40,8 @@ static_routes:
     gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 203.54.161.146 # drw1.speedtest.telstra.net
     gateway: "{{ mobile_gateway }}" # Android USB tether gw
+  - cidr: 10.4.129.69 # vic blackbird
+    gateway: "{{ mobile_gateway }}" # Android USB tether gw
 
 # get the list of id by running speedtest-cli --list inside the docker-speedtest-analyser container
 speedtest_servers:
