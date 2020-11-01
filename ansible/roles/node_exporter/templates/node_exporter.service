@@ -1,0 +1,21 @@
+[Unit]
+Description=node_exporter
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker rm node_exporter
+ExecStartPre=-/usr/bin/docker network create stats-net
+ExecStart=/usr/bin/docker run \
+    --name=node_exporter \
+    --net="stats-net" \
+    --cap-add=SYS_TIME \
+    --pid="host" \
+    -v "/:/host:ro,rslave" \
+    quay.io/prometheus/node-exporter \
+    --path.rootfs=/host
+
+[Install]
+WantedBy=default.target

@@ -27,10 +27,10 @@
     src: dashboards.yml
     dest: /opt/grafana/dashboards/dashboards.yml
 
-- name: Template out grafana dashboard json
-  template:
-    src: speedtest.net.json
-    dest: /opt/grafana/dashboards/speedtest.net.json
+- name: Copy dashboards
+  copy:
+    src: files/dashboards/
+    dest: /opt/grafana/dashboards/
 
 - name: Stop grafana
   service:

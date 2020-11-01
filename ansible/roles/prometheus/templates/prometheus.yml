@@ -10,3 +10,4 @@ scrape_configs:
     static_configs:
       - targets:
           - prometheus-push-gateway:9091
+          - node_exporter:9100
