@@ -1,0 +1,8 @@
+---
+# tasks file for cadvisor
+- name: Template out service file
+  template:
+    src: cadvisor.service
+    dest: /etc/systemd/system/cadvisor.service
+  register: service_file_result
+  notify: restart cadvisor
