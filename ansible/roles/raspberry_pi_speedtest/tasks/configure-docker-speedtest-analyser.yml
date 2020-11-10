@@ -10,14 +10,14 @@
   register: copy_result
 
 - name: Stop docker-speedtest-analyser
-  community.general.docker_container:
+  docker_container:
     name: docker-speedtest-analyser
     state: absent
   when: copy_result.changed
   ignore_errors: true
 
 - name: Remove docker image
-  community.general.docker_image:
+  docker_image:
     name: docker-speedtest-analyser
     force_absent: true
     state: absent
@@ -25,7 +25,7 @@
   ignore_errors: true
 
 - name: Build docker image
-  community.general.docker_image:
+  docker_image:
     name: docker-speedtest-analyser
     build:
       path: /opt/docker-speedtest-analyser
