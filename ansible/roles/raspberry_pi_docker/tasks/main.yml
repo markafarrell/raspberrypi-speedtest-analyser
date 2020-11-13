@@ -22,3 +22,22 @@
     name: pi
     append: true
     groups: docker
+  become: true
+
+- name: Ensure docker service directory exists
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+  become: true
+
+- name: Docker service config details
+  template:
+    src: ../templates/docker-service.conf
+    dest: /etc/systemd/system/docker.service.d/http-proxy.conf
+    mode: '0644'
+  become: true
+  no_log: true
+  notify:
+    - restart-docker-service
+
+- meta: flush_handlers

@@ -1,8 +1,13 @@
 ---
+- name: Create docker-speed-test-analyser directory
+  file:
+    path: /opt/docker-speedtest-analyser
+    state: directory
+
 - name: Copy docker files to host
   copy:
     src: files/{{ item }}
-    dest: /opt/docker-speedtest-analyser
+    dest: /opt/docker-speedtest-analyser/{{ item }}
   loop:
     - Dockerfile
     - crontab.default

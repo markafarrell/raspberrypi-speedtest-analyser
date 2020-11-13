@@ -1,11 +1,8 @@
-FROM alpine:3.9
+FROM python:buster
 
 # install dependencies
-RUN apk update && apk add \
-  bash \
-  git \
-  python3 \
-  py-pip
+RUN apt-get update && apt-get install -y \
+  cron
 
 RUN pip install prometheus_client
 

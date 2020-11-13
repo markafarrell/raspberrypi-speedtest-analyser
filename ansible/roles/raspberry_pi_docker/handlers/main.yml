@@ -1,2 +1,8 @@
 ---
 # handlers file for raspberry_pi_docker
+- name: restart-docker-service
+  systemd:
+    name: docker
+    state: restarted
+    daemon_reload: true
+  become: true
