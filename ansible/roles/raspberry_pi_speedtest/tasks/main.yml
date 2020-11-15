@@ -4,6 +4,7 @@
 
 - name: Configure dhcpcd
   include_tasks: configure-dhcpcd.yml
+  when: configure_routes | default(False)
 
 - name: Configure docker-speedtest-analyser
   include_tasks: configure-docker-speedtest-analyser.yml
