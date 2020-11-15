@@ -7,6 +7,6 @@ An ansible project to turn a raspberry pi into a mobile network speedtesting rob
 
 2. You will need to add the ip address (or hostname) of your raspberry pi to your hosts file so that `raspberrypi-speedtest-analyser` will resolve to the ip address of the raspberry pi you are targeting. Alternatively you can modify the inventory file.
 
-3. Run the `configure.yml` playbook to configure the raspberry pi `ansible-playbook -i inventory/inventory configure.yml` (the command must be run in the `ansible` directory of this project)
+3. Run the `configure.yml` playbook to configure the raspberry pi `ansible-playbook -i inventory/ configure.yml` (the command must be run in the `ansible` directory of this project)
 
 4. Navigate to http://raspberrypi-speedtest-analyser in your browser to view the results. (default grafana credentials are admin:admin)
