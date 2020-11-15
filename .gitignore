@@ -1,0 +1,4 @@
+keys
+ssh_config
+inventory/
+!inventory/inventory
