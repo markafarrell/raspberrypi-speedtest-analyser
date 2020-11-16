@@ -3,7 +3,7 @@
   gather_facts: true
   become: true
   environment:
-    http_proxy: "{{ web_proxy | default(omit) }}"
-    https_proxy: "{{ web_proxy | default(omit) }}"
+    http_proxy: "{{ web_proxy | default('') }}"
+    https_proxy: "{{ web_proxy | default('') }}"
   roles:
     - raspberry_pi_speedtest
