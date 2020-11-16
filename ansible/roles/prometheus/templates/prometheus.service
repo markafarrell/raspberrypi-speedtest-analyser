@@ -6,6 +6,7 @@ Requires=docker.service
 [Service]
 TimeoutStartSec=0
 Restart=always
+ExecStop=/usr/bin/docker kill prometheus
 ExecStartPre=-/usr/bin/docker rm prometheus
 ExecStartPre=-/usr/bin/docker network create stats-net
 ExecStartPre=-/usr/bin/docker volume create prometheus-data

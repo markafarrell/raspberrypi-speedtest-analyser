@@ -6,6 +6,7 @@ Requires=docker.service
 [Service]
 TimeoutStartSec=0
 Restart=always
+ExecStop=/usr/bin/docker kill grafana
 ExecStartPre=-/usr/bin/docker rm grafana
 ExecStartPre=-/usr/bin/docker network create stats-net
 ExecStart=/usr/bin/docker run \
