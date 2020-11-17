@@ -11,39 +11,22 @@ apt_packages:
 pip_packages:
   - docker
 
-mobile_interface_device: usb0
-
-mobile_interface_ip_address: 192.168.42.124/24
-
-mobile_gateway: 192.168.42.129
+speedtest_interface_device: usb0
 
 static_routes:
   - cidr: 139.130.3.66 # mel1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 110.145.177.190 # win1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 144.130.167.86 # hob1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 144.130.167.198 # cbr1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 110.143.60.254 # syd1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 144.130.165.118 # cha1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 203.47.10.37 # ade1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 110.145.213.6 # ool1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 203.39.103.129 # brs1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 110.145.213.14 # mcy1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 203.43.60.161 # per1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 203.54.161.146 # drw1.speedtest.telstra.net
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
   - cidr: 10.4.129.69 # vic blackbird
-    gateway: "{{ mobile_gateway }}" # Android USB tether gw
 
 # get the list of id by running speedtest-cli --list inside the docker-speedtest-analyser container
 speedtest_servers:
