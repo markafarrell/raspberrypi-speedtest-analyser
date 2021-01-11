@@ -1,4 +1,7 @@
+#! /bin/bash
+gateway=$(/sbin/ip route | awk '/default via .* dev {{ speedtest_interface_device }}/ { print $3 }')
+if [ ! -z "$gateway" ]; then
 {% for route in static_routes %}
-ip route add {{ route.cidr }} via {% if speedtest_gw_address is defined %}{{ speedtest_gw_address }}{% else %}`/sbin/ip route | awk '/default via .* dev {{ speedtest_interface_device }}/ { print $3 }'`{% endif %}
-
+ip route add {{ route.cidr }} via {% if speedtest_gw_address is defined %}{{ speedtest_gw_address }}{% else %}$gateway{% endif %};
 {% endfor %}
+fi
