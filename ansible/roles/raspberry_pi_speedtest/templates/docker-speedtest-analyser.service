@@ -11,7 +11,7 @@ ExecStartPre=-/usr/bin/docker rm docker-speedtest-analyser
 ExecStartPre=-/usr/bin/docker network create stats-net
 ExecStart=/usr/bin/docker run --rm --name docker-speedtest-analyser \
     -e SPEEDTEST_PARAMS="{% for server in speedtest_servers %}--server {{ server }} {% endfor %}" \
-    -e CRONJOB_ITERATION="2" \
+    -e CRONJOB_ITERATION="5" \
     --network=stats-net \
     docker-speedtest-analyser
 ExecStop=/usr/bin/docker stop docker-speedtest-analyser
